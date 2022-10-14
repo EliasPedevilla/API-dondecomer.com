@@ -23,7 +23,7 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
-      storeStatusId: {
+      statusId: {
         type: Sequelize.INTEGER
       },
       description: {
@@ -38,7 +38,7 @@ module.exports = {
       locationCoordinates: {
         type: Sequelize.STRING
       },
-      storeCategoryId: {
+      categoryId: {
         type: Sequelize.INTEGER
       },
       facebookUrl: {

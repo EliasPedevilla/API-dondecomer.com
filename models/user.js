@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
+      User.belongsTo(models.UserRole, { foreignKey: 'roleId' })
       User.hasMany(models.Store, {
         foreignKey: 'userId',
       });
@@ -20,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: {
-      unique: true,
       allowNull: false,
+      unique: true,
       type: DataTypes.STRING,
     },
     password: {
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING,
     },
-    userRoleId: {
+    roleId: {
       allowNull: false,
       references: {
         model: 'UserRole',

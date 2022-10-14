@@ -7,7 +7,7 @@ module.exports = {
       userId: 1,
       name: 'store 1',
       username: 'store 1',
-      storeCategoryId: 1,
+      categoryId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});

@@ -16,6 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
+        unique: true,
         type: Sequelize.STRING
       },
       password: {
@@ -24,7 +25,7 @@ module.exports = {
       photo: {
         type: Sequelize.STRING
       },
-      userRoleId: {
+      roleId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

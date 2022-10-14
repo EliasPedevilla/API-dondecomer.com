@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Store extends Model {
     static associate(models) {
-      Store.belongsTo(models.StoreCategory)
-      Store.belongsTo(models.StoreStatus)
-      Store.belongsTo(models.User)
+      Store.belongsTo(models.StoreCategory, { foreignKey: 'categoryId' })
+      Store.belongsTo(models.StoreStatus, { foreignKey: 'statusId' })
+      Store.belongsTo(models.User, { foreignKey: 'userId' })
       Store.hasMany(models.Product, {
         foreignKey: 'storeId',
         sourceKey: 'id',
@@ -30,25 +30,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     name: {
-      allowNull: false,
+      allowNull: true,
       unique: true,
       require: true,
       type: DataTypes.STRING,
     },
     username: {
-      allowNull: false,
+      allowNull: true,
       unique: true,
       require: true,
       type: DataTypes.STRING,
     },
-    storeStatusId: {
+    statusId: {
       allowNull: false,
       references: {
         model: 'StoreStatus',
         key: 'id',
       },
       type: DataTypes.INTEGER,
-      defaultValue: 1
+      defaultValue: 2
     },
     description: DataTypes.STRING,
     phone: {
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING,
     },
-    storeCategoryId: {
+    categoryId: {
       references: {
         model: 'StoreCategory',
         key: 'id',
