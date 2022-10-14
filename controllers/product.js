@@ -15,6 +15,8 @@ const createSingleProduct = async (req, res) => {
 
   try {
     const storeByUser = await services.getSingle(Store, { userId: req.userData.id })
+    if (!storeByUser) return error({ res, message: 'store not found' })
+
     const storeId = storeByUser.dataValues.id
     console.log(storeId);
     const data = await services.createSingle(Product, {
@@ -57,6 +59,8 @@ const getSingleProduct = async (req, res) => {
   const { productId } = req.params
   try {
     const data = await services.getSingle(Product, { id: productId })
+    if (!data) return error({ res, message: 'product not found' })
+
     success({
       res,
       message: 'product detail',
