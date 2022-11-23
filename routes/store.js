@@ -6,13 +6,13 @@ const {
   getSingleStore,
   updateSingleStore
 } = require('../controllers/store');
-const { isAdmin, isAuth } = require('../middlewares');
+const { isAuth, userOwnership } = require('../middlewares');
 
 const router = express.Router();
 
 router.get('/', getAllStores);
 router.get('/:id', getSingleStore);
-router.put('/', isAuth, updateSingleStore);
-router.post('/', isAuth, createSingleStore);
+router.put('/', isAuth, userOwnership, updateSingleStore);
+router.post('/', isAuth, userOwnership, createSingleStore);
 
 module.exports = router;

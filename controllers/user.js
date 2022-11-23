@@ -20,6 +20,8 @@ const getSingleUser = async (req, res) => {
   const { userId } = req.params
   try {
     const data = await services.getSingle(User, { id: userId })
+    if (!data) return error({ res, message: 'store not found' })
+
     success({
       res,
       message: 'user detail',
@@ -104,9 +106,10 @@ const changeUserRole = async (req, res) => {
 
   const { roleId } = req.body;
 
-  const role = await services.getSingle(UserRole, { id: roleId })
-
   try {
+    const role = await services.getSingle(UserRole, { id: roleId })
+    if (!role) return error({ res, message: 'role not found' })
+
     const data = await services.updateSingle(User, userId, {
       roleId
     });

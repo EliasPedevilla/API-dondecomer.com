@@ -68,6 +68,7 @@ const getSingleStore = async (req, res) => {
   const { storeId } = req.params
   try {
     const data = await services.getSingle(Store, { id: storeId })
+    if (!data) return error({ res, message: 'store not found' })
     success({
       res,
       message: 'store detail',
